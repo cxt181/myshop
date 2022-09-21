@@ -1,5 +1,7 @@
 <template>
-    $END$
+    <div>
+        <P>拼团</P>
+    </div>
 </template>
 
 <script>

@@ -1,5 +1,7 @@
 <template>
-    $END$
+    <div>
+        <P>登录页</P>
+    </div>
 </template>
 
 <script>

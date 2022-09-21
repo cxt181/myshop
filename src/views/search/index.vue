@@ -1,5 +1,7 @@
 <template>
-    $END$
+    <div>
+        <P>搜索页</P>
+    </div>
 </template>
 
 <script>

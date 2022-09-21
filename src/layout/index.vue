@@ -1,10 +1,18 @@
 <template>
-    $END$
+    <div>布局页</div>
+    <router-view/>
+    <div>123</div>
 </template>
 
-<script>
+<script >
+    import { Tabbar, TabbarItem } from 'vant';
     export default {
-        name: "index"
+        name: "index",
+        data(){
+            return{
+                active:""
+            }
+        }
     }
 </script>
 

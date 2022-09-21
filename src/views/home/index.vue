@@ -1,5 +1,7 @@
 <template>
-    $END$
+    <div>
+        <P>首页</P>
+    </div>
 </template>
 
 <script>

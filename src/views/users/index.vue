@@ -1,5 +1,7 @@
 <template>
-    $END$
+    <div>
+        <P>个人用户</P>
+    </div>
 </template>
 
 <script>
