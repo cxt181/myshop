@@ -1,12 +1,14 @@
 <template>
     <div class="back">
-        <v-navbar/>
+        <v-NavBar/>
+        <v-Tab/>
     </div>
 
 </template>
 
 <script>
-    import NavBar from './components/NavBar'
+    import NavBar from "./components/NavBar";
+    import Tab from './components/Tab'
     export default {
         name: "index",
         data(){
@@ -15,15 +17,20 @@
             }
         },
         components:{
-            'v-navbar':NavBar,
+            'v-NavBar' :NavBar,
+            'v-Tab':Tab,
         }
     }
 </script>
 
-<style scoped>
-.back{
-    background-color: rgba(184, 184, 184, 0.24);
-    height: 600px;
-    width: 100%;
-}
+<style scoped lang="scss">
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .back{
+        background-color: #c8c8c8;
+        height: 600px;
+    }
+
 </style>
