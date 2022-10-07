@@ -29,8 +29,9 @@
         padding: 0;
     }
     .back{
-        background-color: #c8c8c8;
-        height: 600px;
+        /*background-color: #d93636;*/
+        background-color: #d9d9d9;
+        height: 1200px;
     }
 
 </style>

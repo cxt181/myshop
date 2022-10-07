@@ -14,13 +14,14 @@
                     :key="index"
 
             >
-
+                <v-TabContent/>
             </van-tab>
         </van-tabs>
     </div>
 </template>
 
 <script>
+    import TabContent from "./TabContent";
     export default {
         name: "Tba",
         data(){
@@ -63,6 +64,10 @@
                 console.log('title'+':'+title)
 
             }
+        },
+        //挂载组件
+        components:{
+            'v-TabContent':TabContent,
         }
 
     }
@@ -74,7 +79,7 @@
     /*    padding: 0;*/
     /*}*/
     .TabBox{
-        background-color: #ffffff;
+        /*background-color: #ffffff;*/
         margin: 0;
     }
 
