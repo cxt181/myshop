@@ -1,81 +1,137 @@
 <template>
-    <!--Tab栏的内容-->
-    <div class="TabContentBox">
-        <!--轮播图-->
-        <van-swipe
-                class="my-swipe"
-                :autoplay="3000"
-                indicator-color="red"
-                lazy-render
+    <!--首页内容-->
+    <div v-show="this.data">
+        <!--Tab栏的内容-->
+        <div class="TabContentBox">
+            <!--轮播图-->
+            <van-swipe
+                    class="my-swipe"
+                    :autoplay="3000"
+                    indicator-color="red"
+                    lazy-render
 
+            >
+                <van-swipe-item v-for="(item,index) in imgList" :key="index">
+                    <img :src="item.img" class="img_item">
+                </van-swipe-item>
+            </van-swipe>
+            <!--广告板块-->
+        </div>
+        <div class="adverItem">
+            <p class="adverItem_01"></p>
+            <span class="adverItem_02">活动推荐</span>
+            <span>邀请商家入驻</span>
+        </div>
+        <!--九宫格选项-->
+        <van-grid
+                class="gridBox"
+                :gutter="10"
+                :border="false"
+                @click="onClick"
         >
-            <van-swipe-item v-for="(item,index) in imgList" :key="index">
-                <img :src="item.img" class="img_item">
-            </van-swipe-item>
-        </van-swipe>
-        <!--广告板块-->
-    </div>
-    <div class="adverItem">
-        <p class="adverItem_01"></p>
-        <span class="adverItem_02">活动推荐</span>
-        <span>邀请商家入驻</span>
-    </div>
-    <!--九宫格选项-->
-    <van-grid
-            class="gridBox"
-            :gutter="10"
-            :border="false"
-            @click="onClick"
-    >
-        <van-grid-item
-                :icon="item.icon" :text="item.title"
-                v-for="(item,index) in gridList" :key="index"
-                to="/login"
+            <van-grid-item
+                    :icon="item.icon" :text="item.title"
+                    v-for="(item,index) in gridList" :key="index"
+                    to="/login"
 
 
-        />
-    </van-grid>
-    <!--限时抢购-->
-    <div class="FlashSaleBox">
-        <div class="FlashSaleBox_left">
-            <van-icon name="clock-o" color="red"/>
-            <span>限时抢购</span>
-            <van-count-down :time="time">
-                <template #default="timeData">
-                    <span class="block">{{ timeData.hours }}</span>
-                    <span class="colon">时</span>
-                    <span class="block">{{ timeData.minutes }}</span>
-                    <span class="colon">分</span>
-                    <span class="block">{{ timeData.seconds }}</span>
-                    <span class="colon">秒</span>
-                </template>
-            </van-count-down>
+            />
+        </van-grid>
+        <!--限时抢购-->
+        <div class="FlashSaleBox">
+            <div class="FlashSaleBox_left">
+                <van-icon name="clock-o" color="red"/>
+                <span>限时抢购</span>
+                <van-count-down :time="time">
+                    <template #default="timeData">
+                        <span class="block">{{ timeData.hours }}</span>
+                        <span class="colon">时</span>
+                        <span class="block">{{ timeData.minutes }}</span>
+                        <span class="colon">分</span>
+                        <span class="block">{{ timeData.seconds }}</span>
+                        <span class="colon">秒</span>
+                    </template>
+                </van-count-down>
+            </div>
+            <div class="FlashSaleBox_right">
+                <span>查看更多</span>
+                <van-icon name="arrow"/>
+            </div>
         </div>
-        <div class="FlashSaleBox_right">
-            <span>查看更多</span>
-            <van-icon name="arrow"/>
+        <!--限时抢购商品列表-->
+        <div class="goodList">
+            <div class="goodList_Item" v-for="(item ,index) in goodList" :key="index">
+                <img src="../../../assets/yifu.png" alt="">
+                <span>换季衣服，黑色长袖</span>
+                <p>￥68.9</p>
+            </div>
+        </div>
+        <!--超值拼团-->
+        <div class="ScrabbleBox">
+            <van-icon name="star" color="#fff" class="iconBorder" size="12px"/>
+            <span>超值拼团</span>
+        </div>
+        <div class="ScrabbleBox_Goods" v-for="(item,index) in goodsList" :key="index">
+            <img src="../../../assets/yufugoods.png" alt="">
+            <p class="ScrabbleBox_Goods_Price">
+                <span class="price_color">￥</span>
+                <span class="price_color2">39 </span>
+                <span class="price_border">马上拼团</span>
+            </p>
         </div>
     </div>
-    <!--限时抢购商品列表-->
-    <div class="goodList">
-        <div class="goodList_Item" v-for="(item ,index) in goodList" :key="index">
-            <img src="../../../assets/yifu.png" alt="">
-            <span>换季衣服，黑色长袖</span>
-            <p>￥68.9</p>
+    <!--列表推荐内容 -->
+    <div class="back">
+        <img src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-1.jpeg" class="imgHeight">
+        <!--九宫格推荐列表-->
+        <van-grid
+                column-num="4"
+                :border="false"
+        >
+            <van-grid-item
+                    v-for="(item ,index) in gridList"
+                    :key="index"
+                    class="girdBox"
+                    to="/login"
+
+            >
+                <img src="../../../assets/clothes.png">
+                <p>衣服</p>
+            </van-grid-item>
+        </van-grid>
+        <!--推荐商品-->
+        <div>
+            <van-grid
+                    :column-num="2"
+                    gutter="10px"
+                    center="false"
+            >
+
+                <van-grid-item
+                        class="goodsBox"
+                        v-for="(item,index) in goodsList2"
+                        :key="index
+"
+                >
+                    <van-image
+                            fit="contain"
+                            :src="require('../../../assets/tanke.png')"
+
+                    />
+                    <p>
+                        59-II式主战坦克也被称为ZTZ59-II或WZ-120B，它是59式中型坦克的改进型，
+                        使用ZPL-81 105毫米线膛炮，备弹44发，包括高爆弹、高爆破片弹和尾翼稳定脱壳穿甲弹。
+                    </p>
+                </van-grid-item>
+            </van-grid>
         </div>
     </div>
-    <!--超值拼团-->
-    <div class="ScrabbleBox">
-        <van-icon name="star" color="#fff"  class="iconBorder" size="12px"/>
-        <span>超值拼团</span>
-    </div>
-    <div class="ScrabbleBox_Goods">
-        <img src="" alt="">
-        
-    </div>
+
+
 </template>
 
 <script setup>
+    let data = false;
     const imgList = [
         {
             img: 'https://fastly.jsdelivr.net/npm/@vant/assets/apple-1.jpeg'
@@ -126,6 +182,7 @@
             title: '奢侈品'
         }
     ];
+    //倒计时
     const time = 30 * 60 * 60 * 1000;
     //限时抢购商品列表
     const goodList = [
@@ -133,11 +190,25 @@
         {},
         {}
     ];
+    //限时抢购的商品
+    const goodsList = [
+        {},
+        {},
+        {},
+    ]
 
     function onClick(event) {
         console.log(event)
 
     }
+
+    //列表推荐商品
+    const goodsList2 = [
+        {},
+        {},
+        {},
+        {},
+    ]
 </script>
 
 <style scoped lang="scss">
@@ -273,24 +344,111 @@
     }
 
     /* 超值拼团*/
-    .ScrabbleBox{
+    .ScrabbleBox {
         background-color: #ffffff;
         height: 48px;
         text-align: center;
         line-height: 48px;
-        .iconBorder{
+
+        .iconBorder {
             background-color: red;
             /*border: solid 1px #1f2d3d;*/
             border-radius: 20px;
             padding: 3px;
             text-align: center;
         }
-        span{
+
+        span {
             font-size: 15px;
             text-align: center;
             margin-left: 5px;
             padding-top: 4px;
         }
     }
+
+    .ScrabbleBox_Goods {
+        padding: 5px;
+        background-color: #ffffff;
+
+        margin-bottom: 10px;
+
+        img {
+            height: 100px;
+            width: 100%;
+        }
+
+        .ScrabbleBox_Goods_Price {
+            height: 40px;
+            line-height: 40px;
+
+            .price_color2 {
+                color: red;
+                font-weight: bolder;
+                font-size: 16px;
+            }
+
+            .price_color {
+                font-size: 14px;
+                padding-left: 10px;
+                color: red;
+            }
+
+            .price_border {
+                border: solid 1px red;
+                border-radius: 12px;
+                font-size: 11px;
+                text-align: center;
+                padding: 3px 5px;
+                margin-right: 10px;
+
+            }
+        }
+    }
+
+    /*列表推荐内容*/
+    .back {
+        background-color: #ffffff;
+    }
+
+    .imgHeight {
+        height: 200px;
+        width: 100%;
+        margin: 0;
+    }
+
+    /*    列表推荐的九宫格图片样式*/
+    .girdBox {
+        background-color: #99a9bf;
+
+        img {
+            width: 50%;
+            height: 40px;
+        }
+
+        p {
+            font-size: 12px;
+        }
+    }
+
+    /*商品推荐*/
+    .goodsBox {
+        p {
+            font-size: 12px;
+            /*1. 超出的部分隐藏 */
+            overflow: hidden;
+            /*2. 文字用省略号替代超出的部分 */
+            text-overflow: ellipsis;
+
+            /* 3. 弹性伸缩盒子模型显示 */
+            display: -webkit-box;
+
+            /* 4. 限制在一个块元素显示的文本的行数 */
+            -webkit-line-clamp: 2;
+
+            /* 5. 设置或检索伸缩盒对象的子元素的排列方式 */
+            -webkit-box-orient: vertical;
+        }
+    }
+
 
 </style>

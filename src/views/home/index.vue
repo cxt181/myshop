@@ -31,7 +31,7 @@
     .back{
         /*background-color: #d93636;*/
         background-color: #d9d9d9;
-        height: 1200px;
+        padding-bottom: 50px;
     }
 
 </style>
