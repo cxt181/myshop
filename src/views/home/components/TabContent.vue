@@ -1,6 +1,6 @@
 <template>
     <!--首页内容-->
-    <div v-show="this.data">
+    <div v-show='!data'>
         <!--Tab栏的内容-->
         <div class="TabContentBox">
             <!--轮播图-->
@@ -17,6 +17,7 @@
             </van-swipe>
             <!--广告板块-->
         </div>
+<!--        <div>{{data}}</div>-->
         <div class="adverItem">
             <p class="adverItem_01"></p>
             <span class="adverItem_02">活动推荐</span>
@@ -32,7 +33,6 @@
             <van-grid-item
                     :icon="item.icon" :text="item.title"
                     v-for="(item,index) in gridList" :key="index"
-                    to="/login"
 
 
             />
@@ -60,8 +60,11 @@
         </div>
         <!--限时抢购商品列表-->
         <div class="goodList">
-            <div class="goodList_Item" v-for="(item ,index) in goodList" :key="index">
-                <img src="../../../assets/yifu.png" alt="">
+            <div class="goodList_Item" v-for="(item ,index) in goodList" :key="index"
+                 @click="toPage"
+
+            >
+                <img src="../../../assets/yifu.png" >
                 <span>换季衣服，黑色长袖</span>
                 <p>￥68.9</p>
             </div>
@@ -81,7 +84,7 @@
         </div>
     </div>
     <!--列表推荐内容 -->
-    <div class="back">
+    <div v-show='data' class="back">
         <img src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-1.jpeg" class="imgHeight">
         <!--九宫格推荐列表-->
         <van-grid
@@ -118,10 +121,20 @@
                             :src="require('../../../assets/tanke.png')"
 
                     />
-                    <p>
+                    <p class="priceText">
                         59-II式主战坦克也被称为ZTZ59-II或WZ-120B，它是59式中型坦克的改进型，
                         使用ZPL-81 105毫米线膛炮，备弹44发，包括高爆弹、高爆破片弹和尾翼稳定脱壳穿甲弹。
                     </p>
+                    <p class="priceRed">
+                        <span class="priceRedColor">
+                            ￥ 89
+                        </span>
+                        <span>
+                            已售236件
+                        </span>
+
+                    </p>
+
                 </van-grid-item>
             </van-grid>
         </div>
@@ -130,88 +143,127 @@
 
 </template>
 
-<script setup>
-    let data = false;
-    const imgList = [
-        {
-            img: 'https://fastly.jsdelivr.net/npm/@vant/assets/apple-1.jpeg'
-        },
-        {
-            img: 'https://fastly.jsdelivr.net/npm/@vant/assets/apple-1.jpeg'
-        },
-        {
-            img: 'https://fastly.jsdelivr.net/npm/@vant/assets/apple-1.jpeg'
-        },
-        {
-            img: 'https://fastly.jsdelivr.net/npm/@vant/assets/apple-1.jpeg'
-        },
+<script >
+    import {ref} from 'vue'
+    export default {
+        props:[
+            'data'
+        ],
+        data() {
+            return {
+                //轮播图图片
+                p:'231',
+                imgList: [
+                    {
+                        img: 'https://fastly.jsdelivr.net/npm/@vant/assets/apple-1.jpeg'
+                    },
+                    {
+                        img: 'https://fastly.jsdelivr.net/npm/@vant/assets/apple-1.jpeg'
+                    },
+                    {
+                        img: 'https://fastly.jsdelivr.net/npm/@vant/assets/apple-1.jpeg'
+                    },
+                    {
+                        img: 'https://fastly.jsdelivr.net/npm/@vant/assets/apple-1.jpeg'
+                    },
 
-    ];
-    //商品图标
-    const gridList = [
-        {
-            icon: 'bag',
-            title: '一元抢购'
+                ],
+                //商品图标
+                gridList: [
+                    {
+                        icon: 'bag',
+                        title: '一元抢购'
+                    },
+                    {
+                        icon: 'new-arrival-o',
+                        title: '新品上市'
+                    },
+                    {
+                        icon: 'logistics',
+                        title: '免配送费'
+                    },
+                    {
+                        icon: 'shop',
+                        title: '品牌馆'
+                    },
+                    {
+                        icon: 'underway-o',
+                        title: '限时抢购'
+                    },
+                    {
+                        icon: 'stop-circle',
+                        title: '拼团'
+                    },
+                    {
+                        icon: 'point-gift',
+                        title: '礼品'
+                    },
+                    {
+                        icon: 'goods-collect',
+                        title: '奢侈品'
+                    }
+                ],
+                //倒计时
+                time: 30 * 60 * 60 * 1000,
+                //限时抢购商品列表
+                goodList: [
+                    {},
+                    {},
+                    {}
+                ],
+                //限时抢购的商品
+                goodsList: [
+                    {},
+                    {},
+                    {},
+                ],
+                //列表推荐商品
+                goodsList2: [
+                    {},
+                    {},
+                    {},
+                    {},
+                ],
+            }
         },
-        {
-            icon: 'new-arrival-o',
-            title: '新品上市'
-        },
-        {
-            icon: 'logistics',
-            title: '免配送费'
-        },
-        {
-            icon: 'shop',
-            title: '品牌馆'
-        },
-        {
-            icon: 'underway-o',
-            title: '限时抢购'
-        },
-        {
-            icon: 'stop-circle',
-            title: '拼团'
-        },
-        {
-            icon: 'point-gift',
-            title: '礼品'
-        },
-        {
-            icon: 'goods-collect',
-            title: '奢侈品'
+        //函数方法
+        methods: {
+            onClick(event) {
+                console.log(event);
+            },
+            //页面切换
+            // changTba(){
+            //     console.log('切换页面')
+            // }
+            toPage(){
+                console.log('跳转')
+                this.$router.push('/goodsDetail')
+            }
+
+
         }
-    ];
-    //倒计时
-    const time = 30 * 60 * 60 * 1000;
-    //限时抢购商品列表
-    const goodList = [
-        {},
-        {},
-        {}
-    ];
-    //限时抢购的商品
-    const goodsList = [
-        {},
-        {},
-        {},
-    ]
-
-    function onClick(event) {
-        console.log(event)
 
     }
 
-    //列表推荐商品
-    const goodsList2 = [
-        {},
-        {},
-        {},
-        {},
-    ]
+
+    // function onClick(event) {
+    //     console.log(event);
+    //
+    //
+    // }
+    //
+    // //切换页面
+    // function clickTab() {
+    //     console.log("输出数据")
+    //
+    // }
+
 </script>
 
 <style scoped lang="scss">
+    /*.TabContentBox{*/
+    /*    height: 190px;*/
+    /*}*/
     .my-swipe .van-swipe-item {
         color: #fff;
         text-align: center;
@@ -225,7 +277,6 @@
 
     /* 广告模块样式*/
     .adverItem {
-        margin-top: 8px;
         background-color: #ffffff;
         height: 60px;
         display: flex;
@@ -432,7 +483,7 @@
 
     /*商品推荐*/
     .goodsBox {
-        p {
+        .priceText {
             font-size: 12px;
             /*1. 超出的部分隐藏 */
             overflow: hidden;
@@ -447,6 +498,23 @@
 
             /* 5. 设置或检索伸缩盒对象的子元素的排列方式 */
             -webkit-box-orient: vertical;
+        }
+
+        .priceRed {
+            width: 100%;
+            font-size: 12px;
+            display: flex;
+            justify-content: space-between;
+            /*background-color: black;*/
+            margin-top: 10px;
+            padding-right: 5px;
+
+            .priceRedColor {
+                color: red;
+                font-size: 14px;
+                font-weight: bolder;
+
+            }
         }
     }
 

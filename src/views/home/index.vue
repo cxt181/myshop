@@ -30,7 +30,7 @@
     }
     .back{
         /*background-color: #d93636;*/
-        background-color: #d9d9d9;
+        background-color: #e7e7e7;
         padding-bottom: 50px;
     }
 
