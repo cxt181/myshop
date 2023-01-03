@@ -17,7 +17,7 @@
             </van-swipe>
             <!--广告板块-->
         </div>
-<!--        <div>{{data}}</div>-->
+        <!--        <div>{{data}}</div>-->
         <div class="adverItem">
             <p class="adverItem_01"></p>
             <span class="adverItem_02">活动推荐</span>
@@ -33,6 +33,7 @@
             <van-grid-item
                     :icon="item.icon" :text="item.title"
                     v-for="(item,index) in gridList" :key="index"
+                    @click="toPage(2)"
 
 
             />
@@ -61,10 +62,10 @@
         <!--限时抢购商品列表-->
         <div class="goodList">
             <div class="goodList_Item" v-for="(item ,index) in goodList" :key="index"
-                 @click="toPage"
+                 @click="toPage(1)"
 
             >
-                <img src="../../../assets/yifu.png" >
+                <img src="../../../assets/yifu.png">
                 <span>换季衣服，黑色长袖</span>
                 <p>￥68.9</p>
             </div>
@@ -143,16 +144,17 @@
 
 </template>
 
-<script >
+<script>
     import {ref} from 'vue'
+
     export default {
-        props:[
+        props: [
             'data'
         ],
         data() {
             return {
                 //轮播图图片
-                p:'231',
+                p: '231',
                 imgList: [
                     {
                         img: 'https://fastly.jsdelivr.net/npm/@vant/assets/apple-1.jpeg'
@@ -235,9 +237,14 @@
             // changTba(){
             //     console.log('切换页面')
             // }
-            toPage(){
-                console.log('跳转')
-                this.$router.push('/goodsDetail')
+            toPage(num) {
+                if (num == 1) {
+                    //跳转到详情页
+                    this.$router.push('/goodsDetail')
+                } else if (num == 2) {
+                    //跳转到空页面
+                    this.$router.push('/empty')
+                }
             }
 
 
