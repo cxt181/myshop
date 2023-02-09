@@ -1,4 +1,10 @@
-# vantproject
+#这个项目是基于，我以前的做过的项目React-native框架，现在使用Vant框架来和Vant自带Icon图标，来重新编写代码。
+<br>
+#这是商城类项目
+<br>
+#已完成首页。
+
+
 
 ## Project setup
 ```
