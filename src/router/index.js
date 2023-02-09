@@ -1,6 +1,7 @@
 import {createRouter, createWebHashHistory} from "vue-router";
 
 const routes = [
+    //登录页面
     {
         path: "/login",
         name: "login",
@@ -10,13 +11,14 @@ const routes = [
         component: () =>
             import(/* webpackChunkName: "about" */ "../views/login"),
     },
+    //底部栏
     {
         path: "/", //layout
         name: "layout",      //layout
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
-        redirect: './home',
+        redirect: './users',
         component: () =>
             import('../layout/index'),
         children: [
@@ -74,6 +76,27 @@ const routes = [
         // which is lazy-loaded when the route is visited.
         component: () =>
             import(/* webpackChunkName: "about" */ "../views/empty" ),
+    },
+    /**用户页面的设置页面**/
+    {
+        path: "/setup",
+        name: "setup",
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () =>
+            import(/* webpackChunkName: "about" */ "../views/setup" ),
+    },
+
+    /**用户页面的设置页面的公共页面**/
+    {
+        path: "/public",
+        name: "public",
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () =>
+            import(/* webpackChunkName: "about" */ "../views/public" ),
     },
 
 ];

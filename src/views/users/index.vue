@@ -1,9 +1,11 @@
 <template>
     <div class="back">
-
         <div class="topBack">
-            <div class="icoBox">
-                <van-icon name="setting-o" color="#fff" size="30px" class="icoPadding"/>
+            <div class="icoBox1">
+                <van-icon name="setting-o" color="#fff" size="30px" class="icoPadding"
+                    @click="onClick(1)"
+
+                />
                 <van-icon name="comment-o" color="#fff" size="30px" class="icoPadding"/>
             </div>
             <div class="userBox">
@@ -78,32 +80,88 @@
         </div>
         <!--优惠卷，我的积分，我的拼团，退款/售后 -->
         <div class="icoBox">
-            <div >
-                <van-icon name="coupon-o" color="#F8861E" size="40" class="icoItem01" />
+            <div>
+                <van-icon name="coupon-o" color="#F8861E" size="40" class="icoItem01"/>
                 <p>优惠卷</p>
             </div>
-            <div >
-                <van-icon name="points" color="#20aeff" size="40" class="icoItem01" />
+            <div>
+                <van-icon name="points" color="#20aeff" size="40" class="icoItem01"/>
                 <p>我的积分</p>
             </div>
-            <div >
-                <van-icon name="gift-o" color="#10ff73" size="40" class="icoItem01" />
+            <div>
+                <van-icon name="gift-o" color="#10ff73" size="40" class="icoItem01"/>
                 <p>我的拼团</p>
             </div>
-            <div >
-                <van-icon name="description" color="#ff5353" size="40" class="icoItem01" />
+            <div>
+                <van-icon name="description" color="#ff5353" size="40" class="icoItem01"/>
                 <p>退款/售后</p>
             </div>
 
         </div>
+        <!--地址管理 帮助中心 客服与反馈 关于我们-->
+        <div class="tapBoxMargin">
+            <div>
+                <van-icon name="location-o"/>
+                <span>地址管理</span>
+            </div>
 
-        <P>个人用户</P>
+            <van-icon name="arrow"/>
+        </div>
+        <div class="tapBox">
+            <div>
+                <van-icon name="orders-o"/>
+                <span>帮助中心</span>
+            </div>
+
+            <van-icon name="arrow"/>
+        </div>
+        <div class="tapBox">
+            <div>
+                <van-icon name="service-o"/>
+                <span>客服与反馈</span>
+            </div>
+
+            <van-icon name="arrow"/>
+        </div>
+        <div class="tapBox">
+            <div>
+                <van-icon name="description"/>
+                <span>关于我们</span>
+            </div>
+
+            <van-icon name="arrow"/>
+        </div>
+        <!--引入弹窗-->
+        <v-Dialog></v-Dialog>
+
+        <div class="emptyBottom">
+        </div>
+
     </div>
 </template>
 
 <script>
+
+    import Dialog from "./components/Dialog";
+
     export default {
-        name: "index"
+        name: "index",
+        //引入插件
+        components: {
+            'v-Dialog': Dialog,
+        },
+        /**函数**/
+        methods:{
+            //跳转
+            onClick(data){
+                if(data==1){
+                    this.$router.push('/setup')
+                }else {
+                // 跳转空页面
+                    this.$router.push('/empty')
+                }
+            }
+        }
     }
 </script>
 
@@ -111,7 +169,6 @@
     /*背景颜色*/
     .back {
         background-color: #e7e7e7;
-        height: 600px;
 
     }
 
@@ -121,7 +178,7 @@
         height: 200px;
         color: #ffffff;
 
-        .icoBox {
+        .icoBox1 {
             /*background-color: black;*/
             width: 100%;
             height: 50px;
@@ -220,7 +277,7 @@
     }
 
     /*优惠卷，我的积分，我的拼团，退款/售后*/
-    .icoBox{
+    .icoBox {
         height: 100px;
         margin-top: 10px;
         background-color: #ffffff;
@@ -231,7 +288,8 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        .icoItem01{
+
+        .icoItem01 {
             /*background-color: #ffc690;*/
             width: 50px;
             height: 50px;
@@ -240,4 +298,45 @@
             border-radius: 50px;
         }
     }
+
+    /* 地址管理 帮助中心 客服与反馈 关于我们*/
+    .tapBox {
+        background-color: #ffffff;
+        height: 50px;
+        text-align: left;
+        line-height: 50px;
+        padding: 0 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 1px;
+
+        span {
+            font-size: 16px;
+        }
+    }
+
+    .tapBoxMargin {
+        background-color: #ffffff;
+        margin-top: 10px;
+        height: 50px;
+        text-align: left;
+        line-height: 50px;
+        padding: 0 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 1px;
+
+        span {
+            font-size: 16px;
+        }
+    }
+
+    /*控制底部的空栏样式*/
+    .emptyBottom {
+        height: 40px;
+        background-color: #ffffff;
+    }
+
 </style>
